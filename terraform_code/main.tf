@@ -46,7 +46,7 @@ module "globalvars" {
 }
 
 # Reference subnet provisioned by 01-Networking 
-resource "aws_instance" "my_amazon" {
+resource "aws_instance" "k8s" {
   ami                         = data.aws_ami.latest_amazon_linux.id
   instance_type               = lookup(var.instance_type, var.env)
   key_name                    = aws_key_pair.my_key.key_name
@@ -54,6 +54,11 @@ resource "aws_instance" "my_amazon" {
   associate_public_ip_address = false
  
 
+  root_block_device {
+    volume_size = 20
+  }
+  iam_instance_profile = "LabInstanceProfile"
+  
   lifecycle {
     create_before_destroy = true
   }
@@ -101,13 +106,6 @@ resource "aws_security_group" "my_sg" {
     cidr_blocks      = ["0.0.0.0/0"]
     # ipv6_cidr_blocks = ["::/0"]
   }
- ingress {
-    
-    from_port   = 8081
-    to_port     = 8083
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
   
   egress {
     from_port        = 0
@@ -122,11 +120,12 @@ resource "aws_security_group" "my_sg" {
       "Name" = "${local.name_prefix}-sg"
     }
   )
+  
 }
 
 # Elastic IP
 resource "aws_eip" "static_eip" {
-  instance = aws_instance.my_amazon.id
+  instance = aws_instance.k8s.id
   tags = merge(local.default_tags,
     {
       "Name" = "${local.name_prefix}-eip"
