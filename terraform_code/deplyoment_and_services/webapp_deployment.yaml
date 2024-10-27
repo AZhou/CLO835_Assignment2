@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  namespace: webapp-ns
+spec:
+  replicas: 3  # Number of replicas for high availability
+  selector:
+    matchLabels:
+      app: employees  # Label used for identifying Pods
+  template:
+    metadata:
+      labels:
+        app: employees  # Pods will have this label
+    spec:
+      containers:
+        - name: webapp
+          image: your-webapp-image:latest  # Replace with your web app image
+          ports:
+            - containerPort: 80  

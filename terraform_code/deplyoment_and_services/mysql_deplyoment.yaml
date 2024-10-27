@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  namespace: mysql-ns
+spec:
+  replicas: 1  # Number of replicas
+  selector:
+    matchLabels:
+      app: mysql  # Label used for identifying Pods
+  template:
+    metadata:
+      labels:
+        app: mysql  # Pods will have this label
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: password  # Change to a secure password
+          ports:
+            - containerPort: 3306
