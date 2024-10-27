@@ -1,7 +1,7 @@
 name: Build and Push the Images to the ECR Repository
 on: 
   push:
-    branches: [ main ]
+    branches: [ azhou23_assignment2_v1 ]
 
 jobs:
   
