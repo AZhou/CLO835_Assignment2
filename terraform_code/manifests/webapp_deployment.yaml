@@ -18,4 +18,9 @@ spec:
         - name: webapp
           image: 158522655848.dkr.ecr.us-east-1.amazonaws.com/web-app-repo:webapp-v1
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+          env:
+            - name: DBHOST
+              value: "mysql.assignment2.svc.cluster.local"
+            - name: DBPORT
+              value: "3306"
