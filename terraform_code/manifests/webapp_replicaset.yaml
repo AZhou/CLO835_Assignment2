@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webapp-replicaset
+  labels:
+    app: employees
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      containers:
+        - name: webapp
+          image: 158522655848.dkr.ecr.us-east-1.amazonaws.com/web-app-repo:webapp-v1
+          ports:
+            - containerPort: 80
+
+
+
