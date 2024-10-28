@@ -14,6 +14,6 @@ spec:
         - containerPort: 8080
       env:
         - name: DBHOST
-          value: "mysql.mysql-ns.svc.cluster.local"
+          value: "mysql.assignment2.svc.cluster.local"
         - name: DBPORT
           value: "3306"
