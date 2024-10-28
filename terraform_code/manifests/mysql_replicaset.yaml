@@ -3,16 +3,19 @@ kind: ReplicaSet
 metadata:
   name: mysql-replicaset
   labels:
-    app: mysql
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/component: backend
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: mysql
+      app.kubernetes.io/name: mysql
+      app.kubernetes.io/component: backend
   template:
     metadata:
       labels:
-        app: mysql
+        app.kubernetes.io/name: mysql
+        app.kubernetes.io/component: backend
     spec:
       containers:
         - name: mysql
@@ -21,4 +24,4 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "rootpassword" # Replace with your secure password
+              value: "passwors" # Replace with your secure password
