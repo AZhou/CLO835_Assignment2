@@ -40,6 +40,6 @@ terraform.rc
 .terraform.lock.hcl
 
 #Ignore SSH keys
-.assignment2
-.assignment2.pub
+terraform_code/assignment2
+terraform_code/assignment2.pub
 
