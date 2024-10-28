@@ -39,3 +39,7 @@ terraform.rc
 #Ignore Terraform lock
 .terraform.lock.hcl
 
+#Ignore SSH keys
+.assignment2
+.assignment2.pub
+
