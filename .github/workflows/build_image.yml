@@ -36,7 +36,17 @@ jobs:
         ls -ltra
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile_mysql .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        
+  
+  # Build and push the MySQL Docker image-v2
+    - name: Build the MySQL Docker image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: mysql-repo
+        IMAGE_TAG: mysql-v2
+      run: |
+        ls -ltra
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile_mysql .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG      
     
 
     # Build and push the Web Application Docker image
@@ -49,3 +59,14 @@ jobs:
         ls -ltra
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        
+    # Build and push the Web Application Docker image-v2
+    - name: Build the Web Application Docker image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: web-app-repo
+        IMAGE_TAG: webapp-v2
+      run: |
+        ls -ltra
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG      
