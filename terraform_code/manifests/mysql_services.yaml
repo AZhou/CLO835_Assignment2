@@ -13,4 +13,4 @@ spec:
     protocol: TCP
   selector:
     app.kubernetes.io/name: mysql
-    app.kubernetes.io/component: backend
+    app.kubernetes.io/component: backend 
