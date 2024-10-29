@@ -17,6 +17,8 @@ spec:
         app.kubernetes.io/name: mysql
         app.kubernetes.io/component: backend
     spec:
+      imagePullSecrets:
+        - name: ecr-secret
       containers:
         - name: mysql
           image: 158522655848.dkr.ecr.us-east-1.amazonaws.com/mysql-repo:mysql-v1

@@ -14,6 +14,8 @@ spec:
       labels:
         app: employees
     spec:
+      imagePullSecrets:
+        - name: ecr-secret
       containers:
         - name: webapp
           image: 158522655848.dkr.ecr.us-east-1.amazonaws.com/web-app-repo:webapp-v1
