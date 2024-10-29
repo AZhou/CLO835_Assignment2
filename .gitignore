@@ -43,3 +43,6 @@ terraform.rc
 terraform_code/assignment2
 terraform_code/assignment2.pub
 
+#ignore terraform_code folder
+terraform_code/
+
